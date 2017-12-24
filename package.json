@@ -1,0 +1,8 @@
+{
+  "name": "jlang",
+  "dependencies": {
+    "mathjs": "3.18.0",
+    "mersenne": "0.0.4",
+    "prompt-sync": "4.1.5"
+  }
+}
