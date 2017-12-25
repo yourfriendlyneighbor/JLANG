@@ -1,0 +1,14 @@
+IMPORT "./component.jlang"
+IMPORT "./component2.jlang"
+
+REM "Made by Jonah Perelman"
+
+var name = var name; "Loman"
+
+PRINT "Hello "; var name; "! That is a great name you have."
+
+IF var name == "Jonah Loman" THEN
+    PRINT "Jonah! The cookies you may have"; var x
+ELSE
+    PRINT "Imposter! The cookies you may have"; var y
+END

@@ -1,0 +1,14 @@
+REM "Made by Jonah Perelman"
+
+
+INPUT "What is your name: " var name
+var name = var name; "Loman"
+
+PRINT "Hello "; var name; "! That is a great name you have."
+
+
+IF var name == "Jonah Loman" THEN
+    PRINT "The cookies you may have"; RND 20
+ELSE
+    PRINT "The cookies you may have"; RND 4
+END

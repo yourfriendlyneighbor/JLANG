@@ -1,11 +1,14 @@
 "use strict";
 
+const fs = require('fs');
+
 let
 tokens = [],
 num_stack = [],
 symbols = {};
 
-function lexer(filecontents) {
+function _lexer(filecontents) {
+    console.log("\n Lexing... \n");
     let
     tok = "",
     state = 0,
@@ -101,6 +104,9 @@ function lexer(filecontents) {
         } else if(tok.toUpperCase() == "END") {
             tokens.push("END")
             tok = "";
+        } else if(tok.toUpperCase() == "IMPORT") {
+            tokens.push("IMPORT")
+            tok = "";
         } else if(tok.toUpperCase() == "THEN") {
             if(expr != "" && isexpr == 1) {
                 tokens.push("EXPR:"+expr)
@@ -168,9 +174,49 @@ function lexer(filecontents) {
             tok = "";
         }
     }
-    console.log(tokens);
-    // return ''
     return tokens
+}
+
+function lexer(filecontents) {
+    _lexer(filecontents);
+    if(tokens.includes('IMPORT')) {
+        const occurences = tokens.reduce((a, e, i) => (e === "IMPORT") ? a.concat(i) : a, []);
+        let fc = filecontents;
+        for (var occurence of occurences) {
+            let importcontents = fs.readFileSync(tokens[occurence+1].substring(5, tokens[occurence+1].length - 1), 'utf8').split('').filter(a => a !== '\r');
+            importcontents.push.apply(importcontents, fc);
+            fc = importcontents;
+         }
+
+        const x = fc.toString().split('\n');
+
+
+        loop1:
+        while(true) {
+            for (var i = 0; i < x.length; i++) {
+                if(x[i].indexOf('I,M,P,O,R,T,') > -1) {
+                    x.splice(i, 1);
+                    continue loop1
+                }
+            }
+            break
+        }
+
+        fc = x.join('\n').split(',');
+
+
+        tokens = [];
+        num_stack = [];
+        symbols = {};
+
+        _lexer(fc);
+
+        console.log(tokens);
+
+        return tokens
+    } else {
+        return tokens;
+    }
 }
 
 module.exports.lexer = lexer;

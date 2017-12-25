@@ -1,0 +1,2 @@
+var x = RND 20
+var y = RND 4
