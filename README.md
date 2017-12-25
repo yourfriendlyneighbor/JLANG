@@ -23,12 +23,12 @@ This Interpreter is built by Jonah Perelman and written in pure Javascript
   - Example: "ABC"
 
 ### Supported Operations (can be extended)
-* +		- addition  (numbers)
-* -		- subtraction (numbers)
-* /		- divide
-* *		- multiply
-* ==	- equal
-* ;     -  string concatenation
+* +		-- addition  (numbers)
+* -		-- subtraction (numbers)
+* /		-- divide
+* *		-- multiply
+* ==	-- equal
+* ;     --  string concatenation
 
 Supported Platforms
 -------------------
